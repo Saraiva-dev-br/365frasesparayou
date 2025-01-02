@@ -1,0 +1,270 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #1a1a2e);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.container {
+    text-align: center;
+    border: 2px solid rgba(138, 43, 226, 0.3);
+    border-radius: 30px;
+    padding: clamp(20px, 5vw, 50px);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 0 40px rgba(138, 43, 226, 0.4);
+    animation: float 8s ease-in-out infinite;
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    margin: 20px;
+}
+
+h1 {
+    color: #fff;
+    text-shadow: 0 0 15px rgba(138, 43, 226, 0.8);
+    margin-bottom: clamp(20px, 4vw, 40px);
+    font-size: clamp(2em, 5vw, 3em);
+    animation: pulse 3s ease-in-out infinite;
+    letter-spacing: 2px;
+}
+
+button {
+    background: linear-gradient(45deg, #8a2be2, #4facfe);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: clamp(12px, 2vw, 18px) clamp(25px, 4vw, 35px);
+    cursor: pointer;
+    font-size: clamp(16px, 3vw, 20px);
+    font-weight: 600;
+    transform-style: preserve-3d;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    width: fit-content;
+    margin: 0 auto;
+    box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.15);
+    transition: all 0.4s ease;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #8a2be2, #4facfe);
+    filter: blur(20px);
+    opacity: 0.5;
+    z-index: -1;
+}
+
+#frase {
+    font-size: clamp(1em, 2vw, 1.3em);
+    line-height: 1.8;
+    margin-top: clamp(20px, 4vw, 40px);
+    padding: clamp(15px, 3vw, 25px);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    transition: all 0.4s ease;
+    box-shadow: inset 0 0 15px rgba(138, 43, 226, 0.3);
+}
+
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(138, 43, 226, 0.9);
+    color: white;
+    padding: 15px 30px;
+    border-radius: 25px;
+    animation: fadeInOut 3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: fit-content;
+    max-width: 90%;
+    text-align: center;
+}
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 30px 20px;
+        animation: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    button {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .toast {
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
+
+/* Support for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .container,
+    h1,
+    button,
+    .floating-heart {
+        animation: none;
+        transition: none;
+    }
+}
+
+.floating-heart {
+    position: fixed;
+    font-size: clamp(20px, 4vw, 32px);
+    color: #ff69b4;
+    pointer-events: none;
+    animation: 
+        floatUpAndFade 4s ease-out forwards,
+        heartBeat 1s infinite,
+        sway 2s ease-in-out infinite;
+    text-shadow: 
+        0 0 10px rgba(255, 105, 180, 0.8),
+        0 0 20px rgba(255, 105, 180, 0.4);
+    opacity: 0.9;
+}
+
+@keyframes sway {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(20px);
+    }
+}
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        transform: scale(1.4) rotate(5deg);
+    }
+}
+
+@keyframes floatUpAndFade {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+    10% {
+        transform: translateY(80vh) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) scale(1);
+        opacity: 0;
+    }
+}
+
+/* Original animations remain unchanged */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    15% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    85% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-20px);
+    }
+}
+
+.floating-heart {
+    position: fixed;
+    font-size: 24px;
+    color: #ff69b4;
+    pointer-events: none;
+    animation: floatUpAndFade 4s ease-out forwards, heartBeat 1s infinite;
+    text-shadow: 0 0 5px rgba(255, 105, 180, 0.5);
+}
+
+@keyframes floatUpAndFade {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) scale(1);
+        opacity: 0;
+    }
+}
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.3);
+    }
+}
