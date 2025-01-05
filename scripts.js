@@ -465,5 +465,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initial Setup
     animateFrase('Clique no botão para gerar uma mensagem especial! ❤️');
 });
+
 //////
 
